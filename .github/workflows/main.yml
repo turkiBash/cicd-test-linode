@@ -3,7 +3,7 @@ name: Deploy to Linode
 on:
   push:
     branches:
-      - main
+      - main  # Set this to whichever branch you want to deploy from
 
 jobs:
   deploy:
@@ -11,12 +11,12 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v2  # It's good practice to use a specific release
 
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '16'
+          node-version: '16'  # Make sure this matches the Node.js version you're using
 
       - name: Install Dependencies
         run: npm install
@@ -24,18 +24,18 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Copy files to Linode
-        uses: appleboy/scp-action@master
+      - name: Copy build files to Linode
+        uses: appleboy/scp-action@master  # Consider specifying a version instead of master
         with:
           host: ${{ secrets.LINODE_HOST }}
           username: ${{ secrets.LINODE_USERNAME }}
           key: ${{ secrets.LINODE_SSH_KEY }}
           port: ${{ secrets.LINODE_SSH_PORT }}
-          source: "dist/*"
+          source: "dist/*"  # Ensure this matches the output directory of your build process
           target: "/var/www/cicd-test-linode"
 
-      - name: SSH command to update server
-        uses: appleboy/ssh-action@master
+      - name: SSH commands to reload server
+        uses: appleboy/ssh-action@master  # Consider specifying a version instead of master
         with:
           host: ${{ secrets.LINODE_HOST }}
           username: ${{ secrets.LINODE_USERNAME }}
@@ -43,4 +43,8 @@ jobs:
           port: ${{ secrets.LINODE_SSH_PORT }}
           script: |
             cd /var/www/cicd-test-linode
-            git pull
+            # If you're using a process manager like pm2, you could restart your app here
+            # For example, if you're using pm2: pm2 reload app-name
+            # If you're using a simple node server without a process manager, you could do:
+            # npm install --production
+            # pm2 start your-server-file.js
