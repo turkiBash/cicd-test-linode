@@ -3,7 +3,7 @@ name: Deploy to Linode
 on:
   push:
     branches:
-      - main  # Set this to whichever branch you want to deploy from
+      - main # Set this to whichever branch you want to deploy from
 
 jobs:
   deploy:
@@ -11,12 +11,12 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2  # It's good practice to use a specific release
+        uses: actions/checkout@v2 # It's good practice to use a specific release
 
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '16'  # Make sure this matches the Node.js version you're using
+          node-version: '16' # Make sure this matches the Node.js version you're using
 
       - name: Install Dependencies
         run: npm install
@@ -25,17 +25,17 @@ jobs:
         run: npm run build
 
       - name: Copy build files to Linode
-        uses: appleboy/scp-action@master  # Consider specifying a version instead of master
+        uses: appleboy/scp-action@master # Consider specifying a version instead of master
         with:
           host: ${{ secrets.LINODE_HOST }}
           username: ${{ secrets.LINODE_USERNAME }}
           key: ${{ secrets.LINODE_SSH_KEY }}
           port: ${{ secrets.LINODE_SSH_PORT }}
-          source: "dist/*"  # Ensure this matches the output directory of your build process
-          target: "/var/www/cicd-test-linode"
+          source: 'dist/*' # Ensure this matches the output directory of your build process
+          target: '/var/www/cicd-test-linode'
 
       - name: SSH commands to reload server
-        uses: appleboy/ssh-action@master  # Consider specifying a version instead of master
+        uses: appleboy/ssh-action@master # Consider specifying a version instead of master
         with:
           host: ${{ secrets.LINODE_HOST }}
           username: ${{ secrets.LINODE_USERNAME }}
