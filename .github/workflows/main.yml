@@ -43,6 +43,7 @@ jobs:
           port: ${{ secrets.LINODE_SSH_PORT }}
           script: |
             cd /var/www/cicd-test-linode
+            git pull
             # If you're using a process manager like pm2, you could restart your app here
             # For example, if you're using pm2: pm2 reload app-name
             # If you're using a simple node server without a process manager, you could do:
