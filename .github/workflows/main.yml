@@ -8,7 +8,6 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v2
 
@@ -24,7 +23,7 @@ jobs:
         run: npm run build
 
       - name: Deploy to Linode
-        uses: appleboy/scp-action@master
+        uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.LINODE_HOST }}
           username: 'deployuser'
