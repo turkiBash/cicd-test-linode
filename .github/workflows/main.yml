@@ -29,5 +29,5 @@ jobs:
           username: ${{ secrets.LINODE_USERNAME }}
           key: ${{ secrets.LINODE_SSH_KEY }}
           port: '22'
-          source: './dist/'
+          source: './dist/*'
           target: '/var/www/cicd-test-linode'
