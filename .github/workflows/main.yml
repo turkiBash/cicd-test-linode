@@ -27,7 +27,7 @@ jobs:
         with:
           host: '172.232.206.68'
           username: 'deployuser'
-          key: -----BEGIN OPENSSH PRIVATE KEY-----
+          key: "-----BEGIN OPENSSH PRIVATE KEY-----
 b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAACFwAAAAdzc2gtcn
 NhAAAAAwEAAQAAAgEA/dwBjY4hmhVD456VAtmiISnmUkOVsFZA9sdnO7W1j5FXrNLdlwOE
 ZNm/gCgooiiTO3hegpi3v0zaGWRMpW6cOb+L7uxTe+hDliNcBL/Ra6XOHFQm8g67i6gJRS
@@ -75,7 +75,7 @@ XmtvqbsGGuHgMAAAEBAP6UYzX5nM9k1a6vLfQHlQM48H894NU39pQ3Kog4N6jt2UrMI0Mc
 vlQMz2UFndnc9bijzCrQgPaG/3fqJY8RDwXXCuh24imHWIBKt5cSxng9Lb7KxWch99QhBb
 4hPLcVUj/f4YjbXarEjjVULOp1AXE1Z5Rlg8k/pxofNUKdJYofJ9ff/dv4yNXEO6/tYbKC
 JUPJPNulT+8AAAAOZGV2QHR1cmtpLnRlY2gBAgMEBQ==
------END OPENSSH PRIVATE KEY-----
+-----END OPENSSH PRIVATE KEY-----"
           port: '22'
           source: './dist/*'
           target: '/var/www/cicd-test-linode'
